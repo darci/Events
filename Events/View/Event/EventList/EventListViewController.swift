@@ -14,7 +14,7 @@ class EventListViewController: UIViewController {
     
     @IBOutlet private weak var eventsTableView: UITableView!
     
-    @IBOutlet weak var overView: UIView!
+    @IBOutlet weak var overView: UIVisualEffectView!
     @IBOutlet weak var userFeedbackLabel: UILabel!
     @IBOutlet weak var tryAgainBtn: UIButton!
     @IBOutlet weak var activityIndicador: UIActivityIndicatorView!
@@ -37,8 +37,8 @@ class EventListViewController: UIViewController {
             .loading
             .subscribe(onNext: { isLoading in
                 DispatchQueue.main.async {
-                    self.overView.isHidden = isLoading
-                    self.activityIndicador.isHidden = isLoading
+                    self.overView.isHidden = !isLoading
+                    self.activityIndicador.isHidden = !isLoading
                     if !isLoading {
                         self.refreshControl.endRefreshing()
                     }
@@ -52,6 +52,7 @@ class EventListViewController: UIViewController {
             .subscribe(onNext: { errorMessage in
                 DispatchQueue.main.async {
                     self.overView.isHidden = errorMessage.isEmpty
+                    self.userFeedbackLabel.isHidden = errorMessage.isEmpty
                     self.tryAgainBtn.isHidden = errorMessage.isEmpty
                     self.userFeedbackLabel.text = errorMessage
                 }
@@ -82,11 +83,12 @@ class EventListViewController: UIViewController {
     }
     
     @IBAction func tryAgainBtnClick(_ sender: Any) {
-        self.refreshControl.beginRefreshing()
+        self.eventsViewModel.requestData()
     }
     
     @objc func refreshTableView()
     {
         self.refreshControl.beginRefreshing()
+        self.eventsViewModel.requestData()
     }
 }
