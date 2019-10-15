@@ -30,8 +30,8 @@
                                             <rect key="frame" x="374" y="480" width="20" height="20"/>
                                         </activityIndicatorView>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ocorreu um erro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDe-T4-82d">
-                                            <rect key="frame" x="320.5" y="455" width="127" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="318.5" y="455" width="131.5" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -67,7 +67,7 @@
                     <connections>
                         <outlet property="activityIndicador" destination="1nD-yP-1KN" id="y1v-kT-AGE"/>
                         <outlet property="eventsTableView" destination="wXa-hf-BU6" id="Oph-HM-uLe"/>
-                        <outlet property="overView" destination="u21-2l-EXu" id="glr-Kc-WqL"/>
+                        <outlet property="overView" destination="Sux-fB-gQa" id="IyQ-xr-ian"/>
                         <outlet property="tryAgainBtn" destination="xBS-GE-0AI" id="n4x-wf-k62"/>
                         <outlet property="userFeedbackLabel" destination="qDe-T4-82d" id="4IL-Ul-YLB"/>
                     </connections>

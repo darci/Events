@@ -27,6 +27,7 @@ class GetAllEvents {
                     return
                 }
                 eventList.onNext(userData);
+                errorMessage.onNext("")
                 return;
             }
             errorMessage.onNext("Ops, ocorreu um erro")
