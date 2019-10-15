@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3AF1233463F49B1B8750FC7C /* Pods_Events.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F69B9512DCAFAE39CA814B /* Pods_Events.framework */; };
 		8F6B2A9AB86C8C53399DB268 /* Pods_EventsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C820080D3E08DD3D71D924D /* Pods_EventsTests.framework */; };
+		C608E4AD2355ED9C002AB15A /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C608E4AC2355ED9C002AB15A /* GetEventDetail.swift */; };
 		C6791A812353DFE1006C7FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6791A802353DFE1006C7FD2 /* AppDelegate.swift */; };
 		C6791A832353DFE1006C7FD2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6791A822353DFE1006C7FD2 /* SceneDelegate.swift */; };
 		C6791A8A2353DFEA006C7FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6791A892353DFEA006C7FD2 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		1C820080D3E08DD3D71D924D /* Pods_EventsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B12BC75031F66655589A463 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		7A4F1494281C645F047D9E48 /* Pods-EventsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsTests.release.xcconfig"; path = "Target Support Files/Pods-EventsTests/Pods-EventsTests.release.xcconfig"; sourceTree = "<group>"; };
+		C608E4AC2355ED9C002AB15A /* GetEventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventDetail.swift; sourceTree = "<group>"; };
 		C6791A7D2353DFE1006C7FD2 /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6791A802353DFE1006C7FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6791A822353DFE1006C7FD2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 				7A4F1494281C645F047D9E48 /* Pods-EventsTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C608E4AB2355ED13002AB15A /* GetEventDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C608E4AC2355ED9C002AB15A /* GetEventDetail.swift */,
+			);
+			path = GetEventDetail;
 			sourceTree = "<group>";
 		};
 		C6791A742353DFE1006C7FD2 = {
@@ -169,6 +179,7 @@
 		C6791AA42353EB51006C7FD2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C608E4AB2355ED13002AB15A /* GetEventDetail */,
 				C6791AA82353EE2D006C7FD2 /* GetAllEvents */,
 				C6791AAB2353F467006C7FD2 /* HttpMethod.swift */,
 				C6791AA92353F43B006C7FD2 /* RestClient.swift */,
@@ -475,6 +486,7 @@
 				C6791AAA2353F43B006C7FD2 /* RestClient.swift in Sources */,
 				C6791AAC2353F467006C7FD2 /* HttpMethod.swift in Sources */,
 				C6791ABE235415B2006C7FD2 /* EventsViewModel.swift in Sources */,
+				C608E4AD2355ED9C002AB15A /* GetEventDetail.swift in Sources */,
 				C6F4D3AF235567D800570260 /* UIImageViewExtension.swift in Sources */,
 				C6791AAF2353FE3E006C7FD2 /* Event.swift in Sources */,
 				C6791AB12353FE65006C7FD2 /* Person.swift in Sources */,
