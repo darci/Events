@@ -9,6 +9,7 @@
 import UIKit
 
 class EventItemTableViewCell: UITableViewCell {
+    var id:String?
     @IBOutlet weak var eventImage : UIImageView!
     @IBOutlet weak var eventTitle : UILabel!
     @IBOutlet weak var eventDate: UILabel!
@@ -16,7 +17,7 @@ class EventItemTableViewCell: UITableViewCell {
     
     public var cellEvent : Event! {
         didSet {
-
+            self.id = cellEvent.id
             self.eventImage.download(from: cellEvent.image!)
             self.eventTitle.text = cellEvent.title
             if let date = cellEvent.date {
@@ -24,7 +25,6 @@ class EventItemTableViewCell: UITableViewCell {
                 formatter.dateFormat = "dd/MM/yyyy"
                 self.eventDate.text = "🗓" + formatter.string(from: date)
                 formatter.dateFormat = "HH:mm"
-                let x = #imageLiteral(resourceName: "barrier")
                 self.eventSchedule.text = "🕐" + formatter.string(from: date)
             }
             else {

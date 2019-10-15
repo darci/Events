@@ -13,8 +13,8 @@ import RxCocoa
 class GetEventDetail {
     
     let rest = RestClient()
-    func getEvent(id:Int, event:PublishSubject<Event>, loading: PublishSubject<Bool>, errorMessage: PublishSubject<String>) {
-        guard let url = URL(string: "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events/\(id)") else { return }
+    func getEvent(id:String, event:PublishSubject<Event>, loading: PublishSubject<Bool>, errorMessage: PublishSubject<String>) {
+        guard let url = URL(string: "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events/" + id) else { return }
         loading.onNext(true)
         rest.makeRequest(toURL: url, withHttpMethod: .get) { (results) in
             if let data = results.data {

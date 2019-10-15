@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXa-hf-BU6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXa-hf-BU6">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -70,6 +70,7 @@
                         <outlet property="overView" destination="Sux-fB-gQa" id="IyQ-xr-ian"/>
                         <outlet property="tryAgainBtn" destination="xBS-GE-0AI" id="n4x-wf-k62"/>
                         <outlet property="userFeedbackLabel" destination="qDe-T4-82d" id="4IL-Ul-YLB"/>
+                        <segue destination="tMG-3W-InQ" kind="showDetail" id="lLg-Ze-Axd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jow-ao-2hl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -82,6 +83,16 @@
                 </navigationBar>
             </objects>
             <point key="canvasLocation" x="-1.5625" y="-10.546875"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="8PJ-e5-IfF">
+            <objects>
+                <viewControllerPlaceholder id="tMG-3W-InQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4qW-qM-wcs"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vx4-Hr-ld7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="429" y="-11"/>
         </scene>
     </scenes>
 </document>

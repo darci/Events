@@ -66,12 +66,26 @@ class EventListViewController: UIViewController {
             .bind(to: self.events)
             .disposed(by: disposeBag)
         
+        eventsTableView.register(UINib(nibName: "EventItemTableViewCell", bundle: nil), forCellReuseIdentifier: String(describing: EventItemTableViewCell.self))
         
-          eventsTableView.register(UINib(nibName: "EventItemTableViewCell", bundle: nil), forCellReuseIdentifier: String(describing: EventItemTableViewCell.self))
+        eventsTableView.rx.itemSelected
+        .subscribe(onNext: { [weak self] indexPath in
+            let eventItemCell = self?.eventsTableView.cellForRow(at: indexPath) as? EventItemTableViewCell
+            self?.eventsTableView.deselectRow(at: indexPath, animated: true)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "EventDetailViewController", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "EventDetailViewController") as! EventDetailViewController
+            newViewController.eventId = eventItemCell?.id
+            self?.present(newViewController, animated: true, completion: nil)
+            print(indexPath.description)
+            
+        }).disposed(by: disposeBag)
           
-          events.bind(to: eventsTableView.rx.items(cellIdentifier: "EventItemTableViewCell", cellType: EventItemTableViewCell.self)) {  (row,event,cell) in
-              cell.cellEvent = event
-              }.disposed(by: disposeBag)
+          events
+            .bind(to: eventsTableView.rx.items(cellIdentifier: "EventItemTableViewCell", cellType: EventItemTableViewCell.self)) {
+                (row,event,cell) in
+                cell.cellEvent = event
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setupRefreshControl(){
@@ -91,4 +105,5 @@ class EventListViewController: UIViewController {
         self.refreshControl.beginRefreshing()
         self.eventsViewModel.requestData()
     }
+    
 }
