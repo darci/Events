@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func download(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit, defaultImage: String = "barrier") {
+    func download(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill, defaultImage: String = "Cloud Error") {
         let cache = NSCache<NSString, ImageCache>()
         if let imageFromCache = cache.object(forKey: url.absoluteString as NSString)  {
             setImage(imageFromCache.image, animationDuration: 0, contentMode: mode)
@@ -33,12 +33,12 @@ extension UIImageView {
         }.resume()
            
     }
-    func download(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+    func download(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
         guard let url = URL(string: link) else { return }
         download(from: url, contentMode: mode)
     }
     
-    func setImage( _ image:UIImage?, animationDuration: TimeInterval = 0 , contentMode mode: UIView.ContentMode = .scaleAspectFit){
+    func setImage( _ image:UIImage?, animationDuration: TimeInterval = 0 , contentMode mode: UIView.ContentMode = .scaleAspectFill){
         DispatchQueue.main.async() {
             
             CATransaction.begin()
