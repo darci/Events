@@ -48,6 +48,18 @@ class EventDetailViewController:UIViewController {
                 DispatchQueue.main.async {
                     self.eventImage.download(from: event.image!)
                     self.eventTitle.text = event.title
+                   
+                    let location = CLLocationCoordinate2D(latitude: event.latitude!, longitude: event.longitude!)
+                    
+                    let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                    let region = MKCoordinateRegion(center: location, span: span)
+                    self.eventMap.setRegion(region, animated: true)
+                        
+                    
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = location
+                    annotation.title =  event.title
+                    self.eventMap.addAnnotation(annotation)
                     if let date = event.date {
                         self.eventDate.text = "🗓" + self.formatter.string(from: date)
                     } else {
@@ -55,7 +67,8 @@ class EventDetailViewController:UIViewController {
                     }
                     
                     if let price = event.price {
-                        self.eventPrice.text = String(format: "%\(2)f", price)
+                        let price = String(format: "R$ %.2f", price)
+                        self.eventPrice.text = price.replacingOccurrences(of: ".", with: ",")
                     } else {
                         self.eventPrice.text = "Valor não informado"
                     }
