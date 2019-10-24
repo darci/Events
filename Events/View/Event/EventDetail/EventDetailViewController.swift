@@ -26,7 +26,9 @@ class EventDetailViewController:UIViewController {
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventMap: MKMapView!
     @IBOutlet weak var eventDate: UILabel!
-    @IBOutlet weak var eventPrice: UILabel!
+    
+    @IBOutlet weak var eventCheckoutBtn: UIButton!
+
     @IBOutlet weak var eventDescription: UILabel!
     
      var eventDetailViewModel = EventDetailViewModel()
@@ -38,8 +40,13 @@ class EventDetailViewController:UIViewController {
         super.viewDidLoad()
         setupBinding()
         self.eventDetailViewModel.requestData(id: eventId!)
+        
     }
     
+    @IBAction func checkoutButtonClick(_ sender: Any) {
+        addBottomSheetView()
+        print("click")
+    }
     private func setupBinding(){
         formatter.dateFormat = "HH:mm dd MMM yyyy"
         eventDetailViewModel
@@ -68,9 +75,9 @@ class EventDetailViewController:UIViewController {
                     
                     if let price = event.price {
                         let price = String(format: "R$ %.2f", price)
-                        self.eventPrice.text = price.replacingOccurrences(of: ".", with: ",")
+                        self.eventCheckoutBtn.titleLabel!.text = price.replacingOccurrences(of: ".", with: ",")
                     } else {
-                        self.eventPrice.text = "Valor não informado"
+                        self.eventCheckoutBtn.titleLabel!.text = "Checkout"
                     }
                     self.eventDescription.text = event.description
                 }
@@ -101,5 +108,27 @@ class EventDetailViewController:UIViewController {
             
             })
             .disposed(by: disposeBag)
+    }
+    
+    
+    func addBottomSheetView() {
+        let alertController = UIAlertController(title: "Confirmar", message: "Insira seus dados para confimar o checkout", preferredStyle: .alert)
+        alertController.addTextField { nameTextField in
+            nameTextField.placeholder = "Nome"
+        }
+        alertController.addTextField{ emailTextField in
+            emailTextField.placeholder = "e-mail"
+        }
+        let confirmAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
+            guard let alertController = alertController,
+                let name = alertController.textFields?.first,
+                let email = alertController.textFields?.first
+                else { return }
+            print("Current\(String(describing: name.text))\(String(describing: email.text))")
+        }
+        alertController.addAction(confirmAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
