@@ -21,7 +21,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4B-9I-nKD">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cloud Error" translatesAutoresizingMaskIntoConstraints="NO" id="12C-vJ-xfs">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="12C-vJ-xfs">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="260" id="I3i-d5-3to"/>
@@ -33,12 +33,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42L-yL-LNA">
-                                                <rect key="frame" x="363" y="329" width="39" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGx-ld-oNs">
                                                 <rect key="frame" x="12" y="329" width="36" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -46,14 +40,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descricao" textAlignment="justified" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b10-6p-Kwv">
-                                                <rect key="frame" x="12" y="365.5" width="390" height="20.5"/>
+                                                <rect key="frame" x="12" y="371" width="390" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <size key="shadowOffset" width="0.0" height="1"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wmn-ct-AzE">
+                                                <rect key="frame" x="336" y="329" width="66" height="30"/>
+                                                <state key="normal" title="Checkout"/>
+                                                <connections>
+                                                    <action selector="checkoutButtonClick:" destination="NyY-Km-5FO" eventType="touchUpInside" id="DtR-lW-lzd"/>
+                                                </connections>
+                                            </button>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Csv-b4-esn">
-                                                <rect key="frame" x="0.0" y="398" width="414" height="410"/>
+                                                <rect key="frame" x="0.0" y="403.5" width="414" height="404.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="zlU-RH-fUe"/>
                                                 </constraints>
@@ -62,18 +63,17 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="Csv-b4-esn" firstAttribute="top" secondItem="b10-6p-Kwv" secondAttribute="bottom" constant="12" id="1AD-7h-mbB"/>
-                                            <constraint firstItem="42L-yL-LNA" firstAttribute="top" secondItem="2rc-S4-gRq" secondAttribute="bottom" constant="12" id="1VU-TV-Yfx"/>
-                                            <constraint firstItem="42L-yL-LNA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WGx-ld-oNs" secondAttribute="trailing" constant="12" id="4lc-8n-3ns"/>
                                             <constraint firstItem="2rc-S4-gRq" firstAttribute="top" secondItem="12C-vJ-xfs" secondAttribute="bottom" constant="16" id="5Vm-Nx-6db"/>
+                                            <constraint firstItem="Wmn-ct-AzE" firstAttribute="top" secondItem="2rc-S4-gRq" secondAttribute="bottom" constant="12" id="5fa-3b-DVU"/>
                                             <constraint firstItem="Csv-b4-esn" firstAttribute="leading" secondItem="r4B-9I-nKD" secondAttribute="leading" id="6Mp-X6-Rhg"/>
                                             <constraint firstAttribute="trailing" secondItem="2rc-S4-gRq" secondAttribute="trailing" constant="12" id="BnG-GZ-dc4"/>
-                                            <constraint firstAttribute="trailing" secondItem="42L-yL-LNA" secondAttribute="trailing" constant="12" id="EaZ-xm-OOa"/>
                                             <constraint firstAttribute="bottom" secondItem="Csv-b4-esn" secondAttribute="bottom" constant="10" id="JsJ-va-vKA"/>
                                             <constraint firstAttribute="trailing" secondItem="12C-vJ-xfs" secondAttribute="trailing" id="OJt-bF-wit"/>
+                                            <constraint firstItem="b10-6p-Kwv" firstAttribute="top" secondItem="Wmn-ct-AzE" secondAttribute="bottom" constant="12" id="QU5-Rg-eag"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wmn-ct-AzE" secondAttribute="trailing" constant="12" id="SLG-Xq-7ah"/>
                                             <constraint firstItem="12C-vJ-xfs" firstAttribute="top" secondItem="r4B-9I-nKD" secondAttribute="top" id="VMU-zq-2ZD"/>
                                             <constraint firstItem="WGx-ld-oNs" firstAttribute="leading" secondItem="r4B-9I-nKD" secondAttribute="leading" constant="12" id="YjR-L9-KYV"/>
                                             <constraint firstItem="b10-6p-Kwv" firstAttribute="leading" secondItem="r4B-9I-nKD" secondAttribute="leading" constant="12" id="bbM-4G-UpF"/>
-                                            <constraint firstItem="b10-6p-Kwv" firstAttribute="top" secondItem="42L-yL-LNA" secondAttribute="bottom" constant="16" id="f3l-9m-1cB"/>
                                             <constraint firstItem="12C-vJ-xfs" firstAttribute="leading" secondItem="r4B-9I-nKD" secondAttribute="leading" id="hKC-mm-jEP"/>
                                             <constraint firstItem="2rc-S4-gRq" firstAttribute="leading" secondItem="r4B-9I-nKD" secondAttribute="leading" constant="12" id="nep-F2-ksN"/>
                                             <constraint firstItem="WGx-ld-oNs" firstAttribute="top" secondItem="2rc-S4-gRq" secondAttribute="bottom" constant="12" id="w0l-I1-0f8"/>
@@ -137,11 +137,11 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicador" destination="Ost-ce-UY0" id="p0F-U2-LjH"/>
+                        <outlet property="eventCheckoutBtn" destination="Wmn-ct-AzE" id="zHM-Sw-TGI"/>
                         <outlet property="eventDate" destination="WGx-ld-oNs" id="x6A-LB-xPl"/>
                         <outlet property="eventDescription" destination="b10-6p-Kwv" id="XrN-51-XMv"/>
                         <outlet property="eventImage" destination="12C-vJ-xfs" id="dPt-pG-ubR"/>
                         <outlet property="eventMap" destination="Csv-b4-esn" id="PQh-ZL-R6Q"/>
-                        <outlet property="eventPrice" destination="42L-yL-LNA" id="oLf-Ud-CUl"/>
                         <outlet property="eventTitle" destination="2rc-S4-gRq" id="jrr-Uw-PNI"/>
                         <outlet property="overView" destination="Y5u-Br-O6r" id="Jz0-Jd-Wd1"/>
                         <outlet property="tryAgainBtn" destination="dad-74-8wZ" id="d8Q-oc-fHn"/>
@@ -158,7 +158,4 @@
             <point key="canvasLocation" x="-271.01449275362319" y="0.0"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Cloud Error" width="128" height="128"/>
-    </resources>
 </document>

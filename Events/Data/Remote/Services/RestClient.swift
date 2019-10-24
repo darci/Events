@@ -22,29 +22,47 @@ class RestClient {
     var httpBodyParameters : [String: String] = [:]
     
     var httpBody: Data?
-
-        // MARK: - Public Methods
-    func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod, completion: @escaping (_ result: Results) -> Void) {
-        
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let targetURL = self?.addURLQueryParameters(toURL: url)
-            let httpBody = self?.getHttpBody()
-            
-            guard let request = self?.prepareRequest(withURL: targetURL, httpBody: httpBody, httpMethod: httpMethod) else
-            {
-                completion(Results(withError: CustomError.failedToCreateRequest))
-                return
+    
+    // MARK: - Public Methods
+    func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod)  -> Observable<Data> {
+        let targetURL = self.addURLQueryParameters(toURL: url)
+        return Observable.create { observer in
+            let httpBody = self.getHttpBody()
+            guard let request = self.prepareRequest(withURL: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
+                observer.onError(ApiCustomErrors.failedToCreateRequest)
+                return Disposables.create()
             }
-            
-            let sessionConfiguration = URLSessionConfiguration.default
-            let session = URLSession(configuration: sessionConfiguration)
+            let session = URLSession(configuration: URLSessionConfiguration.default)
             let task = session.dataTask(with: request) { (data, response, error) in
-                completion(Results(withData: data,response: Response(fromURLResponse: response),error: error))
+                if let error = error {
+                    observer.onError(ApiCustomErrors.Other(error))
+                    observer.onCompleted()
+                    return
+                }
+                let response  = Response(fromURLResponse: response)
+                if response.response == nil {
+                    observer.onError(ApiCustomErrors.failedToCreateRequest)
+                    observer.onCompleted()
+                    return
+                }
+                if  200 ..< 300 ~= response.httpStatusCode {
+                    observer.onNext(data ?? Data() )
+                    observer.onCompleted()
+                    return
+                }
+                observer.onError(ApiCustomErrors.BadStatus(status:response.httpStatusCode))
+                observer.onCompleted()
             }
+            
             task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
         }
+        
     }
-  
+    
     // MARK: - Private Methods
     private func addURLQueryParameters(toURL url: URL) -> URL {
         if urlQueryParameters.count > 0 {
@@ -52,7 +70,6 @@ class RestClient {
             var queryItems = [URLQueryItem]()
             for (key, value) in urlQueryParameters {
                 let item = URLQueryItem(name: key, value: value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
-                
                 queryItems.append(item)
             }
             
@@ -77,7 +94,7 @@ class RestClient {
             return httpBody
         }
     }
-        
+    
     private func prepareRequest(withURL url: URL?, httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url)
@@ -128,17 +145,5 @@ extension RestClient {
             self.error = error
         }
     }
-
-    enum CustomError: Error {
-        case failedToCreateRequest
-    }
-}
-
-// MARK: - Custom Error Description
-extension RestClient.CustomError: LocalizedError {
-    public var localizedDescription: String {
-        switch self {
-        case .failedToCreateRequest: return NSLocalizedString("Unable to create the URLRequest object", comment: "")
-        }
-    }
+    
 }

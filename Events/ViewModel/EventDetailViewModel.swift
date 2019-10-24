@@ -18,7 +18,15 @@ class EventDetailViewModel {
     private let getEventDetail = GetEventDetail()
     
     public func requestData(id: String){
-        getEventDetail.getEvent(id: id, event: event, loading: loading, errorMessage: errorMessage)
+        errorMessage.onNext("")
+        loading.onNext(true)
+        getEventDetail.getEvent(id:id).subscribe(
+            onNext: { self.event.onNext($0) },
+            onError: {self.errorMessage.onNext($0.localizedDescription) },
+            onCompleted: { self.loading.onNext(false) },
+            onDisposed: { print("Disposed") }
+        ).disposed(by: disposable)
+        
     }
     
 }
